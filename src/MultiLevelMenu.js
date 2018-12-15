@@ -4,11 +4,12 @@ import _ from "lodash";
 
 const Item = props => {
   const {
-    name,
+    item,
   } = props;
+  const name = item.name
   return (
     <div className={`item ${name}`}>
-    <label className={`label ${name}`}>{name}</label>
+      <label className={`label ${name}`}>{name}</label>
     </div>
   );
 };
@@ -18,26 +19,35 @@ const Group = props => {
     name,
     items
   } = props;
-  const sortedItems = _.sortBy(items);
+  // const sortedItems = _.sortBy(items);
+  const sortedItems = _.orderBy(items, 'name');
   return (
     <div className={`group ${name}`}>
-    {
-      _.map(sortedItems, item => {
-        return <Item name={item}/>
-      })
-    }
+      {
+        _.map(sortedItems, item => {
+          return <Item item={item} />
+        })
+      }
     </div>
   );
 }
 
 class MultiLevelMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: props.data
+    };
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
-          <Group name="group 1" items={["item1","item2","item3","item4","item5"]}/>
-          <Group name="group 2" items={["item6","item7","item8","item9","item4"]}/>
-          <Group name="group 3" items={["item b","item a","item e","item d","item c"]}/>
+          {_.map(this.state.data, group => {
+            return <Group name="group 3" items={group} />
+          })}
+
         </div>
       </div>
     );
