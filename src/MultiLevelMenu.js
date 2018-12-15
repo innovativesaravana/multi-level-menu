@@ -28,6 +28,17 @@ const Group = props => {
   );
 };
 
+const MenuContainer = props => {
+  const {data} = props;
+  return(
+    <div className="container">
+      {_.map(data, group => {
+        return <Group name="group 3" items={group} />;
+      })}
+    </div>
+  )
+}
+
 class MultiLevelMenu extends Component {
   constructor(props) {
     super(props);
@@ -39,11 +50,7 @@ class MultiLevelMenu extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
-          {_.map(this.state.data, group => {
-            return <Group name="group 3" items={group} />;
-          })}
-        </div>
+        <MenuContainer data={this.state.data}/>
       </div>
     );
   }
