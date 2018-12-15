@@ -36,6 +36,7 @@ div.item:active {
   max-width: 150px;
   border-width: 2px;
   width: absolute;
+  float: left;
 }
 .group:first-child {
   border-width: 0px;
@@ -49,6 +50,9 @@ div.item:active {
 span {
   margin-right: 5%;
   text-align: right;
+}
+.test{
+  margin-top: 20px;
 }
 /* 
 .App-logo {
