@@ -21,7 +21,7 @@ div.item:active {
 }
 
 .item:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
   background-color: #0d90c0;
   color: white;
 }
@@ -45,6 +45,10 @@ div.item:active {
   border-width: 1px;
   margin-left: 4px;
   margin-right: 4px;
+}
+span {
+  margin-right: 5%;
+  text-align: right;
 }
 /* 
 .App-logo {
