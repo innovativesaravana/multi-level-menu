@@ -2,51 +2,30 @@ import React, { Component } from "react";
 import "./MultiLevelMenu.css";
 import _ from "lodash";
 
-class Item extends Component {
-  constructor(props) {
-    super(props);
-    const { item } = props;
-    const name = item.name;
-    this.state = {
-      item: item,
-      name: name
-    };
-  }
-  render() {
-    const name = this.state.name;
-    const item = this.state.item;
-    return (
-      <div className={`item ${name}`}>
-        <label className={`label ${name}`}>{name}</label>
-        {
-          (!_.isUndefined(item.subitems)&&<span>&#x25BA;</span>)
-        }
-      </div>
-    );
-  }
-  
+const Item = props => {
+  const { item } = props;
+  const name = item.name;
+  return (
+    <div className={`item ${name}`}>
+      <label className={`label ${name}`}>{name}</label>
+      {
+        (!_.isUndefined(item.subitems)&&<span>&#x25BA;</span>)
+      }
+    </div>
+  );
 };
 
-class Group extends Component {
-  constructor(props) {
-    super(props);
-    const { name, items } = props;
-    const sortedItems = _.orderBy(items, "name");
-    this.state = {
-      name: name,
-      sortedItems: sortedItems
-    };
-  }
-  render() {
-    return (
-      <div className={`group ${this.state.name}`}>
-        {_.map(this.state.sortedItems, item => {
-          return <Item item={item} />;
-        })}
-      </div>
-    );
-  }
+const Group = props => {
+  const { name, items } = props;
   // const sortedItems = _.sortBy(items);
+  const sortedItems = _.orderBy(items, "name");
+  return (
+    <div className={`group ${name}`}>
+      {_.map(sortedItems, item => {
+        return <Item item={item} />;
+      })}
+    </div>
+  );
 };
 
 class MultiLevelMenu extends Component {
